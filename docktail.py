@@ -152,7 +152,8 @@ class LogWorker(threading.Thread):
                         line = str(chunk)
                     if line:
                         # Color the entire line for this container
-                        console.print(Text(f"[{self.container_name}] {line}", style=self.style))
+                        console.print(Text(f"[{self.container_name}]", style=self.style), end=" ")
+                        console.print(Text(f"{line}"))
                 # When the stream ends (e.g., container stopped), we don't know state yet.
                 # Next loop iteration will reload() and print "-" if it actually stopped.
             except docker.errors.APIError:
